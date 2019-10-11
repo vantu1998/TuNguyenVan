@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)file:///C:/Users/Tu%20Nguyen/Desktop/web/baitap_NCC/bai%201/code/Nguyen_Van_Tu_baiTapJs.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #className,#studentName{
+            width:150px;
+            height:50px;
+            font-family:segoe ui light;
+            color:black;
+        }
+    </style>
+</head>
+<body>
+    <select name="className" id="className">
+        <option value="all">all</option>
+        <option value=".net">.net</option>
+        <option value="angular">angular</option>
+        <option value="java">java</option>
+        <option value="test">test</option>
+    </select>
+    <select name="" id="studentName"></select>
+    <script>
+        students = [
+            {id: 1, name: 'tran van a', className: '.net'},
+            {id: 2, name: 'tran van b', className: '.net'},
+            {id: 3, name: 'tran van c', className: 'angular'},
+            {id: 4, name: 'tran van d', className: 'angular'},
+            {id: 5, name: 'tran van e', className: 'java'},
+            {id: 6, name: 'tran van f', className: 'java'},
+            {id: 7, name: 'tran van g', className: 'java'},
+            {id: 8, name: 'tran van h', className: 'test'},
+            {id: 9, name: 'tran van i', className: 'test'},
+            {id: 10, name: 'tran van j', className: 'test'} 
+        ];
+        function render(element,arr){
+            var selected=document.getElementById(element);
+            var content=arr.map(function(item){
+                return "<option>"+item.name+"</option>";
+            });
+            console.log(content);
+            selected.innerHTML=content.join("");
+        }
+        var onClick=document.getElementById("className");
+        onClick.addEventListener('change',reRender);
+        function reRender(){
+            var choice=onClick.value;
+            var list=[];
+            if(choice!="all"){
+                list=students.filter(function(item){
+                return item.className==choice;
+                });
+            }
+            else list=students;
+            render("studentName",list);
+        }
+    </script>
+
+</body></html>
